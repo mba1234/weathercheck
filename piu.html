@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather app</title>
+</head>
+
+<body>
+    
+
+    <div   class ="box">
+        <div class ="wave -one"></div>
+        <div class ="wave -two"></div>
+        <div class ="wave -three"></div>
+        <div id ="weathercron"></div>
+        <div  class ="information"><img src = "http://openweathermap.org/img/wn/{%p%}@2x.png" 
+         >
+            <h2  class ="location"><i class="fa-solid fa-street-view"></i>{%location%},{%country%}</h2>
+            <p id = "date">WED | month day | 10:49 pm</p>
+            <h1 class ="temp">{%tempval%}°C</h1>
+            <h2>{%dil%}</h2>
+            <h4>Pressure:{%dili%}<br>Humidity:{%dilis%}</h4>
+            
+            <h3 class ="tempmin_max">Minimum temp:{%tempmin%}°C|| Maximum temp: {%tempmax%}°C</h3>
+        </div>      
+    </div>
+    <script>
+        const curdate = document.getElementById("date");
+        const date = new Date();
+        
+        const curday= ()=>{
+    let week = new Array(7)
+     week[0] = "Monday";
+     week[1] = "Tuesday";
+     week[2] = "Wednesday";
+     week[3] = "Thursday";
+     week[4] = "Friday";
+     week[5] = "Satday";
+     week[6] = "Sunday";
+      return week[date.getDay()]
+        }
+        const curmonth= ()=>{
+            const piy = date.getDay();
+            const pst = date.getMonth();
+            const month = ["January","February","March",
+            "April","May","June","July","August","September"
+            ,"October","November","December"];
+
+            let mins = date.getMinutes();
+            let hours = date.getHours();
+            let pm = "AM";
+            if(hours > 11){
+                pm = "PM";
+            }else{
+                pm ="AM";
+            }
+
+            if(mins <10){
+                mins = "0"+mins;
+            }
+      return `${month[pst]} ${piy} | ${hours}:${mins} ${pm}`;
+        }
+     curdate.innerHTML= curday()+ " | "+curmonth();
+    </script>
+</body>
+</html>
